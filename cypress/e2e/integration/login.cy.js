@@ -51,9 +51,7 @@ describe("Login Verification", () => {
     },
   ].forEach((creds) => {
     it(`TG11S-T164 - Validate login with ${creds.title} `, () => {
-      if (creds.username === "" && creds.password === "")
-        loginPage.clickOnLoginButton();
-      else loginPage.login(creds.username, creds.password);
+      loginPage.login(creds.username, creds.password);
 
       cy.url().should("include", "login");
       loginPage
@@ -61,4 +59,7 @@ describe("Login Verification", () => {
         .should("have.text", "Invalid Login or Password.");
     });
   });
+  // Test: password is masked
+  // enter credentials and hit enter
+  it("", () => {});
 });
