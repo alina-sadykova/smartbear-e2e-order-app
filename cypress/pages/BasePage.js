@@ -21,7 +21,20 @@ export default class BasePage {
   getRightPanelMainContentTable() {
     return cy.get(".content table").first();
   }
-  // #ctl00_MainContent_orderGrid or . SampleTable
-  // .ProductsTable
-  // #ctl00_MainContent_fmwOrder
+
+  // Reusable table methods
+  getTableHeaders() {
+    return this.getRightPanelMainContentTable().find("th");
+  }
+  getRows() {
+    return this.getRightPanelMainContentTable().find("tr");
+  }
+
+  getRow(index) {
+    return this.getRows().eq(index);
+  }
+
+  getColumn(index) {
+    return this.getRows().find(`td:nth-child(${index + 1})`);
+  }
 }
