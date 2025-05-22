@@ -18,6 +18,10 @@ export default class BasePage {
     return cy.get("h2");
   }
 
+  clickOnLeftPanelOption(optionText) {
+    this.getLeftPanelOptions().contains(optionText).click();
+  }
+
   getRightPanelMainContentTable() {
     return cy.get(".content table").first();
   }
@@ -26,6 +30,7 @@ export default class BasePage {
   getTableHeaders() {
     return this.getRightPanelMainContentTable().find("th");
   }
+
   getRows() {
     return this.getRightPanelMainContentTable().find("tr");
   }

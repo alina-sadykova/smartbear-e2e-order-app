@@ -20,7 +20,7 @@ describe("View All Orders Verification", () => {
         cy.wrap(el).should("have.text", expectedHeaderTexts[index]);
     });
   });
-  it.only('TG11S - T124 Validate "Check All" and "Uncheck All" buttons @Regression', () => {
+  it('TG11S - T124 Validate "Check All" and "Uncheck All" buttons @Regression', () => {
     const validateCheckBoxes = (checked) => {
       if (checked) {
         viewAllOrdersPage.getCheckAllButton().click();
