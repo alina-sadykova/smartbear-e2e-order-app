@@ -1,4 +1,4 @@
-name: Smart App - Smoke Tests
+name: Smart App - Regression Tests
 on:
   # Trigger workflow on any push o rpull to any branch, example master
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [master]
   schedule:
-    cron: "0 12 * * *"
+    cron: "0 10 */14 * 4"
 
   # what will be triggered?
 jobs:
@@ -24,12 +24,12 @@ jobs:
         uses: actions/checkout@v4
 
       # install my dependencies
-      - name: Install Dependencies and Run Smoke Tests
+      - name: Install Dependencies and Run Regression Tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           headed: false
-          command: npm run test:smoke
+          command: npm run test:regression
 
       #Generate a report
       - name: Publish Test Reports
