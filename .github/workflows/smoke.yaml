@@ -11,9 +11,9 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     env:
-      APP_BASE_URL: ${{vars.APP_BASE_URL}}
-      USERNAME=: ${{vars.USERNAME}}
-      PASSWORD: ${{vars.PASSWORD}}
+      APP_BASE_URL: ${{ vars.APP_BASE_URL }}
+      USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ vars.PASSWORD }}
 
     # what ubuntu do?
     steps:
@@ -21,10 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-        # install my dependencies
+      # install my dependencies
       - name: Install Dependencies and Run Smoke Tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           headed: false
           command: npm run test:smoke
+
+      #Generate a report
+      - name: Publish Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cypress HTML Reports
+          path: cypress/reports/
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
