@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [master]
   schedule:
-    cron: "0 10 */14 * 4"
+    - cron: "0 10 */14 * 4"
 
   # what will be triggered?
 jobs:
